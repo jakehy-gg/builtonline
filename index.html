@@ -1,0 +1,2304 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BuiltOnline — Online Presence for Any Business</title>
+  <meta name="description" content="BuiltOnline helps businesses build a proper online presence — without the fuss." />
+
+  <!-- Open Graph / iMessage link preview -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:title"       content="BuiltOnline" />
+  <meta property="og:description" content="Online presence for any business — without the fuss." />
+  <meta property="og:image"       content="https://builtonline.pages.dev/og-image.svg" />
+  <meta property="og:image:width"  content="1200" />
+  <meta property="og:image:height" content="630" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── Variables ───────────────────────────────────────── */
+    :root {
+      --cream:   #F4F1EA;
+      --cream-d: #EAE5DA;
+      --ink:     #161412;
+      --ink-mid: #4A443C;
+      --green:   #2C4A1E;
+      --green-l: #3D6329;
+      --tan:     #A08060;
+      --white:   #FDFBF7;
+      --border:  rgba(22,20,18,.12);
+      --shadow:  0 2px 24px rgba(22,20,18,.08);
+      --radius:  4px;
+    }
+
+    /* ─── Reset ───────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      line-height: 1.7;
+      font-size: 16px;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'DM Serif Display', serif;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      color: var(--ink);
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    strong { font-weight: 600; }
+
+    .container {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .section     { padding: 7rem 0; }
+    .section-cream   { background: var(--cream); }
+    .section-cream-d { background: var(--cream-d); }
+    .section-white   { background: var(--white); }
+    .section-ink     { background: var(--ink); color: var(--white); }
+
+    /* ─── Tags / Eyebrows ─────────────────────────────────── */
+    .tag {
+      display: inline-block;
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--green);
+      border: 1px solid var(--green);
+      padding: 4px 12px;
+      border-radius: 2px;
+      margin-bottom: 18px;
+    }
+
+    .tag-light {
+      color: rgba(255,255,255,.7);
+      border-color: rgba(255,255,255,.3);
+    }
+
+    /* ─── Buttons ─────────────────────────────────────────── */
+    .btn {
+      display: inline-block;
+      padding: 13px 28px;
+      border-radius: var(--radius);
+      font-family: 'Inter', sans-serif;
+      font-size: .875rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease, color .18s ease;
+      border: none;
+      letter-spacing: .01em;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+
+    .btn-dark {
+      background: var(--ink);
+      color: var(--white);
+      box-shadow: 0 2px 8px rgba(22,20,18,.18);
+    }
+    .btn-dark:hover { background: #2a2620; box-shadow: 0 4px 16px rgba(22,20,18,.25); }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--ink);
+      border: 1.5px solid var(--ink);
+    }
+    .btn-outline:hover { background: var(--ink); color: var(--white); }
+
+    .btn-outline-light {
+      background: transparent;
+      color: var(--white);
+      border: 1.5px solid rgba(255,255,255,.55);
+    }
+    .btn-outline-light:hover { background: rgba(255,255,255,.1); border-color: var(--white); }
+
+    .btn-green {
+      background: var(--green);
+      color: var(--white);
+      box-shadow: 0 2px 8px rgba(44,74,30,.2);
+    }
+    .btn-green:hover { background: var(--green-l); box-shadow: 0 4px 16px rgba(44,74,30,.3); }
+
+    .btn-full { display: block; width: 100%; text-align: center; }
+
+    /* ─── Nav ─────────────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      max-width: 1160px;
+      margin: 0 auto;
+      height: 66px;
+    }
+
+    .nav-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.3rem;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+    }
+
+    .nav-logo em {
+      font-style: italic;
+      color: var(--green);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: .875rem;
+      font-weight: 500;
+      color: var(--ink-mid);
+      transition: color .2s;
+    }
+
+    .nav-links a:hover { color: var(--ink); }
+    .nav-cta { margin-left: 8px; }
+    .nav-cta a.btn { color: var(--white); }
+    .nav-cta a.btn:hover { color: var(--white); }
+
+    /* ─── Hamburger ───────────────────────────────────────── */
+    .nav-burger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px 4px;
+      flex-shrink: 0;
+    }
+
+    .nav-burger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--ink);
+      border-radius: 2px;
+      transition: transform .22s ease, opacity .22s ease;
+    }
+
+    .nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ─── Ticker ──────────────────────────────────────────── */
+    .ticker {
+      background: var(--green);
+      color: rgba(255,255,255,.85);
+      font-size: .78rem;
+      font-weight: 500;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      overflow: hidden;
+      padding: 9px 0;
+    }
+
+    .ticker-track {
+      display: flex;
+      animation: ticker 32s linear infinite;
+      width: max-content;
+    }
+
+    .ticker-track span {
+      white-space: nowrap;
+      padding: 0 2.5rem;
+    }
+
+    .ticker-track span::after {
+      content: '·';
+      margin-left: 2.5rem;
+      opacity: .4;
+    }
+
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ─── Hero ────────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      background: var(--ink);
+      color: var(--white);
+      min-height: 92vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1586771107445-d3ca888129ff?auto=format&fit=crop&w=1800&q=80');
+      background-size: cover;
+      background-position: center 40%;
+      opacity: .38;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, rgba(22,20,18,.75) 0%, rgba(22,20,18,.2) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 680px;
+      padding: 8rem 0 7rem;
+    }
+
+    .hero h1 {
+      color: var(--white);
+      font-size: clamp(2.6rem, 5vw, 4.2rem);
+      line-height: 1.08;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: #c8ddb8;
+    }
+
+    .hero-sub {
+      font-size: 1.08rem;
+      color: rgba(255,255,255,.65);
+      max-width: 520px;
+      line-height: 1.78;
+      margin-bottom: 42px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: rgba(255,255,255,.38);
+      font-size: .7rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .hero-scroll-line {
+      width: 1px;
+      height: 48px;
+      background: rgba(255,255,255,.25);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { opacity: .2; }
+      50% { opacity: .7; }
+    }
+
+    /* ─── Section Headers ─────────────────────────────────── */
+    .sec-header { margin-bottom: 4rem; }
+
+    .sec-header.center {
+      text-align: center;
+      max-width: 620px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .sec-header h2 {
+      font-size: clamp(2rem, 3.5vw, 2.9rem);
+      margin-bottom: 14px;
+    }
+
+    .sec-header p {
+      color: var(--ink-mid);
+      font-size: 1.02rem;
+      max-width: 520px;
+    }
+
+    .sec-header.center p { margin: 0 auto; }
+
+    /* ─── About / Who We Are ──────────────────────────────── */
+    .who-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .who-image {
+      position: relative;
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .who-image img {
+      width: 100%;
+      height: 480px;
+      object-fit: cover;
+      transition: transform .5s ease;
+    }
+
+    .who-image:hover img { transform: scale(1.03); }
+
+    .who-image-tag {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      background: rgba(22,20,18,.75);
+      backdrop-filter: blur(6px);
+      color: var(--white);
+      font-size: .8rem;
+      font-weight: 500;
+      padding: 8px 14px;
+      border-radius: 2px;
+    }
+
+    .who-text h2 {
+      font-size: clamp(2rem, 3vw, 2.7rem);
+      margin-bottom: 20px;
+    }
+
+    .who-text p { color: var(--ink-mid); margin-bottom: 18px; font-size: 1.02rem; }
+
+    .fact-list { display: grid; gap: 12px; margin-top: 2rem; }
+
+    .fact-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      padding: 16px 18px;
+      background: var(--cream-d);
+      border-radius: var(--radius);
+      border-left: 3px solid var(--green);
+    }
+
+    .fact-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.3rem;
+      color: var(--tan);
+      line-height: 1;
+      flex-shrink: 0;
+      padding-top: 2px;
+      opacity: .8;
+    }
+
+    .fact-copy strong {
+      display: block;
+      font-size: .95rem;
+      color: var(--ink);
+      margin-bottom: 3px;
+    }
+
+    .fact-copy p { font-size: .875rem; color: var(--ink-mid); margin: 0; }
+
+    /* ─── Services ────────────────────────────────────────── */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border: 1.5px solid var(--border);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .service-card {
+      padding: 2.2rem;
+      background: var(--white);
+      border-right: 1.5px solid var(--border);
+      border-bottom: 1.5px solid var(--border);
+      transition: background .2s;
+    }
+
+    .service-card:nth-child(3n)   { border-right: none; }
+    .service-card:nth-child(n+4)  { border-bottom: none; }
+    .service-card:hover { background: var(--cream); }
+
+    .service-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.2rem;
+      color: var(--tan);
+      line-height: 1;
+      margin-bottom: 14px;
+      opacity: .55;
+    }
+
+    .service-card h3 { font-size: 1.05rem; margin-bottom: 10px; color: var(--ink); }
+    .service-card p  { color: var(--ink-mid); font-size: .9rem; line-height: 1.65; }
+
+    /* ─── Packages ────────────────────────────────────────── */
+    .packages-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    .pkg {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 3px;
+      overflow: hidden;
+      position: relative;
+      transition: box-shadow .25s, transform .25s;
+    }
+
+    .pkg:hover { box-shadow: 0 8px 40px rgba(22,20,18,.09); transform: translateY(-2px); }
+
+    .pkg.featured {
+      border-color: var(--green);
+      box-shadow: 0 0 0 3px rgba(44,74,30,.1), 0 8px 32px rgba(22,20,18,.1);
+    }
+
+    .pkg-ribbon {
+      position: absolute;
+      top: 0; right: 0;
+      background: var(--green);
+      color: var(--white);
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: 5px 16px;
+      border-radius: 0 3px 0 6px;
+    }
+
+    .pkg-header {
+      padding: 2rem 2rem 1.4rem;
+      border-bottom: 1.5px solid var(--border);
+    }
+
+    .pkg.featured .pkg-header { background: #edf3e8; }
+
+    .pkg-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.35rem;
+      color: var(--ink);
+      margin-bottom: 2px;
+    }
+
+    .pkg-price {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.4rem;
+      color: var(--ink);
+      line-height: 1;
+      margin: 12px 0 4px;
+    }
+
+    .pkg-price span {
+      font-family: 'Inter', sans-serif;
+      font-size: .88rem;
+      font-weight: 400;
+      color: var(--ink-mid);
+    }
+
+    .pkg-tagline { font-size: .88rem; color: var(--ink-mid); margin-top: 8px; }
+
+    .pkg-body { padding: 1.6rem 2rem 2rem; }
+
+    .pkg-note {
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--ink-mid);
+      opacity: .7;
+      margin-bottom: .9rem;
+    }
+
+    .pkg-features {
+      list-style: none;
+      display: grid;
+      gap: 9px;
+      margin-bottom: 1.8rem;
+    }
+
+    .pkg-features li {
+      font-size: .9rem;
+      color: var(--ink-mid);
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      line-height: 1.55;
+    }
+
+    .pkg-features li::before {
+      content: '✓';
+      color: var(--green);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .pkg-features li.plus::before { content: '+'; color: var(--tan); }
+    .pkg-features li strong { color: var(--ink); }
+
+    .pkg-allincluded {
+      display: flex;
+      align-items: flex-start;
+      gap: .75rem;
+      background: var(--green);
+      color: var(--white);
+      border-radius: var(--radius);
+      padding: 1.1rem 1.4rem;
+      margin-bottom: 2.8rem;
+      font-family: 'Inter', sans-serif;
+      font-size: .9rem;
+      line-height: 1.65;
+    }
+    .pkg-allincluded svg { flex-shrink: 0; margin-top: 2px; color: var(--white); }
+    .pkg-allincluded strong { color: var(--white); }
+
+    /* ─── Stats (dark) ────────────────────────────────────── */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 3px;
+      overflow: hidden;
+      margin-bottom: 4rem;
+    }
+
+    .stat {
+      padding: 2.4rem 1.8rem;
+      background: rgba(255,255,255,.03);
+      border-right: 1px solid rgba(255,255,255,.08);
+      text-align: center;
+      transition: background .2s;
+    }
+
+    .stat:last-child { border-right: none; }
+    .stat:hover { background: rgba(255,255,255,.07); }
+
+    .stat-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 3rem;
+      color: var(--tan);
+      display: block;
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+
+    .stat-lbl { font-size: .85rem; color: rgba(255,255,255,.5); line-height: 1.5; }
+
+    /* ─── Case Studies (dark) ─────────────────────────────── */
+    .cases-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .case {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.09);
+      border-radius: 3px;
+      overflow: hidden;
+      transition: transform .25s, box-shadow .25s;
+    }
+
+    .case:hover { transform: translateY(-4px); box-shadow: 0 14px 44px rgba(0,0,0,.35); }
+
+    .case-img {
+      position: relative;
+      height: 210px;
+      overflow: hidden;
+    }
+
+    .case-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: .7;
+      transition: transform .5s ease, opacity .3s;
+    }
+
+    .case:hover .case-img img { transform: scale(1.06); opacity: .9; }
+
+    .case-pill {
+      position: absolute;
+      bottom: 12px; right: 12px;
+      background: rgba(22,20,18,.72);
+      backdrop-filter: blur(6px);
+      color: var(--white);
+      font-size: .75rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 2px;
+    }
+
+    .case-body { padding: 1.4rem 1.6rem 1.8rem; }
+
+    .case-cat {
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--tan);
+      margin-bottom: 7px;
+    }
+
+    .case-body h3 { font-size: 1.05rem; color: var(--white); margin-bottom: 9px; }
+    .case-body p { font-size: .875rem; color: rgba(255,255,255,.52); line-height: 1.62; }
+
+    /* ─── Testimonials ────────────────────────────────────── */
+    .testi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .testi {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 3px;
+      padding: 2.2rem;
+      transition: box-shadow .2s, transform .2s;
+    }
+
+    .testi:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
+
+    .testi-stars { color: #B8901A; font-size: .9rem; margin-bottom: 16px; letter-spacing: .04em; }
+
+    .testi-text {
+      font-size: .95rem;
+      color: var(--ink-mid);
+      font-style: italic;
+      line-height: 1.75;
+      margin-bottom: 22px;
+    }
+
+    .testi-author { display: flex; align-items: center; gap: 12px; }
+
+    .testi-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--cream-d);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'DM Serif Display', serif;
+      font-size: 1rem;
+      color: var(--green);
+      flex-shrink: 0;
+    }
+
+    .testi-name  { font-weight: 600; font-size: .88rem; color: var(--ink); }
+    .testi-role  { font-size: .78rem; color: var(--ink-mid); margin-top: 2px; }
+
+    /* ─── Steps ───────────────────────────────────────────── */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      position: relative;
+    }
+
+    .steps-grid::before {
+      content: '';
+      position: absolute;
+      top: 24px;
+      left: 12%;
+      right: 12%;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .step { text-align: center; position: relative; z-index: 1; }
+
+    .step-n {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--ink);
+      color: var(--white);
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.15rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 18px;
+    }
+
+    .step h3 { font-size: 1.05rem; margin-bottom: 9px; }
+    .step p  { font-size: .875rem; color: var(--ink-mid); line-height: 1.65; }
+
+    /* ─── FAQ ─────────────────────────────────────────────── */
+    .faq-wrap { max-width: 740px; margin: 0 auto; display: grid; gap: 10px; }
+
+    .faq-item {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .faq-q {
+      width: 100%;
+      background: none;
+      border: none;
+      text-align: left;
+      padding: 1.3rem 1.6rem;
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.02rem;
+      color: var(--ink);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      transition: background .15s;
+    }
+
+    .faq-q:hover { background: var(--cream); }
+
+    .faq-arrow {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      color: var(--ink-mid);
+      transition: transform .25s;
+    }
+
+    .faq-item.open .faq-arrow { transform: rotate(180deg); }
+
+    .faq-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .35s ease;
+    }
+
+    .faq-body-inner {
+      padding: 1rem 1.6rem 1.5rem;
+      font-size: .92rem;
+      color: var(--ink-mid);
+      line-height: 1.78;
+    }
+
+    .faq-item.open .faq-body { max-height: 400px; }
+
+    /* ─── Contact ─────────────────────────────────────────── */
+    .contact-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 12px 60px rgba(22,20,18,.25);
+    }
+
+    .contact-left {
+      background: var(--green);
+      padding: 4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .contact-left h2  { color: var(--white); font-size: clamp(1.6rem, 2.5vw, 2.2rem); margin-bottom: 16px; }
+    .contact-left p   { color: rgba(255,255,255,.75); font-size: .97rem; line-height: 1.72; margin-bottom: 10px; }
+
+    .contact-details  { display: grid; gap: 14px; margin-top: 2rem; }
+
+    .contact-detail   { font-size: .9rem; color: rgba(255,255,255,.65); }
+    .contact-detail strong {
+      display: block;
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.5);
+      margin-bottom: 2px;
+    }
+
+    .contact-right { background: var(--ink); padding: 4rem; }
+
+    .c-form { display: grid; gap: 1rem; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: .85rem; }
+
+    .field { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+
+    .field label {
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.45);
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.13);
+      border-radius: var(--radius);
+      padding: 11px 14px;
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: .9rem;
+      outline: none;
+      transition: border-color .2s, background .2s;
+    }
+
+    .field input::placeholder,
+    .field textarea::placeholder { color: rgba(255,255,255,.28); }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      border-color: rgba(255,255,255,.38);
+      background: rgba(255,255,255,.11);
+    }
+
+    .field select option { background: #1a1714; }
+    .field textarea { resize: none; height: 88px; }
+
+    .btn-submit {
+      background: var(--white);
+      color: var(--ink);
+      padding: 13px 28px;
+      border-radius: var(--radius);
+      font-family: 'Inter', sans-serif;
+      font-size: .875rem;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      transition: background .2s, transform .18s;
+    }
+
+    .btn-submit:hover { background: var(--cream); transform: translateY(-1px); }
+
+    /* ─── Footer ──────────────────────────────────────────── */
+    footer {
+      background: #0F0D0B;
+      color: rgba(255,255,255,.4);
+      padding: 2.5rem 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .footer-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.1rem;
+      color: var(--white);
+    }
+
+    .footer-logo em { font-style: italic; color: #9ec88a; }
+
+    .footer-nav { display: flex; gap: 28px; list-style: none; }
+
+    .footer-nav a { font-size: .82rem; color: rgba(255,255,255,.38); transition: color .2s; }
+    .footer-nav a:hover { color: rgba(255,255,255,.8); }
+
+    .footer-copy { font-size: .78rem; }
+
+    /* ─── Photo Strips ──────────────────────────────────── */
+    .photo-strip {
+      width: 100%;
+      height: 320px;
+      overflow: hidden;
+      position: relative;
+      display: block;
+    }
+    .photo-strip img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      transition: transform 8s ease;
+    }
+    .photo-strip:hover img { transform: scale(1.03); }
+    .photo-strip-cap {
+      position: absolute;
+      bottom: 1.6rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(22,20,18,.52);
+      backdrop-filter: blur(6px);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: .75rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: .45rem 1.1rem;
+      border-radius: 40px;
+      white-space: nowrap;
+    }
+    @media(max-width:640px) { .photo-strip { height: 210px; } }
+
+    /* ─── Scroll Reveal ───────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .65s ease, transform .65s ease;
+    }
+
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    .reveal-d1 { transition-delay: .1s; }
+    .reveal-d2 { transition-delay: .2s; }
+    .reveal-d3 { transition-delay: .3s; }
+    .reveal-d4 { transition-delay: .4s; }
+
+    /* ─── Divider ─────────────────────────────────────────── */
+    .divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+
+    /* ─── Team Section ───────────────────────────────────── */
+    .team-intro { text-align: center; max-width: 680px; margin: 0 auto 4.5rem; }
+    .team-intro h2 { font-size: clamp(2rem, 3.5vw, 2.9rem); margin-bottom: 16px; }
+    .team-intro p  { color: var(--ink-mid); font-size: 1.05rem; line-height: 1.78; }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .team-card {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .team-card-img {
+      height: 300px;
+      overflow: hidden;
+      position: relative;
+      background: var(--cream-d);
+    }
+
+    .team-card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      transition: transform .5s ease;
+    }
+
+    .team-card:hover .team-card-img img { transform: scale(1.04); }
+
+    .team-card-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--cream-d) 0%, #d8d0c4 100%);
+    }
+
+    .team-card-placeholder span {
+      font-family: 'DM Serif Display', serif;
+      font-size: 5rem;
+      color: var(--ink-mid);
+      opacity: .28;
+      letter-spacing: -0.04em;
+    }
+
+    .team-role-badge {
+      position: absolute;
+      bottom: 16px;
+      left: 16px;
+      background: var(--green);
+      color: var(--white);
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 2px;
+    }
+
+    .team-card-body { padding: 1.8rem 2rem 2.2rem; }
+
+    .team-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.55rem;
+      color: var(--ink);
+      margin-bottom: 3px;
+    }
+
+    .team-title {
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--tan);
+      margin-bottom: 16px;
+    }
+
+    .team-card-body p {
+      font-size: .95rem;
+      color: var(--ink-mid);
+      line-height: 1.78;
+      margin-bottom: 12px;
+    }
+
+    .team-card-body p:last-of-type { margin-bottom: 0; }
+    .team-card-body strong { color: var(--ink); }
+
+    .team-stats {
+      display: flex;
+      gap: 1.4rem;
+      margin-top: 1.4rem;
+      padding-top: 1.4rem;
+      border-top: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+
+    .team-stat strong {
+      display: block;
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.55rem;
+      color: var(--green);
+      line-height: 1;
+      margin-bottom: 3px;
+    }
+
+    .team-stat span { font-size: .78rem; color: var(--ink-mid); }
+
+    .team-together {
+      margin-top: 2.5rem;
+      background: var(--ink);
+      border-radius: 4px;
+      padding: 2.8rem 3rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 2rem;
+    }
+
+    .team-together-icon {
+      font-family: 'DM Serif Display', serif;
+      font-size: 3.5rem;
+      color: #c8ddb8;
+      line-height: .85;
+      flex-shrink: 0;
+      margin-top: -4px;
+    }
+
+    .team-together h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.45rem;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+
+    .team-together p { font-size: .95rem; color: rgba(255,255,255,.6); line-height: 1.78; }
+
+    /* ─── SEO Spotlight ──────────────────────────────────── */
+    .seo-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .seo-text h2 {
+      font-size: clamp(1.9rem, 3vw, 2.7rem);
+      margin-bottom: 20px;
+      line-height: 1.12;
+    }
+
+    .seo-text p {
+      color: var(--ink-mid);
+      font-size: 1.02rem;
+      line-height: 1.78;
+      margin-bottom: 16px;
+    }
+
+    .seo-text strong { color: var(--ink); }
+
+    .seo-points { display: grid; gap: 12px; margin-top: 1.6rem; }
+
+    .seo-point {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      padding: 14px 16px;
+      background: rgba(44,74,30,.07);
+      border-radius: var(--radius);
+      border-left: 3px solid var(--green);
+    }
+
+    .seo-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--green);
+      color: var(--white);
+      font-size: .75rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .seo-copy strong { display: block; font-size: .92rem; color: var(--ink); margin-bottom: 2px; }
+    .seo-copy p { font-size: .85rem; color: var(--ink-mid); margin: 0; }
+
+    /* ─── Google Mockup ──────────────────────────────────── */
+    .google-mockup {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 14px 48px rgba(22,20,18,.13);
+    }
+
+    .gm-bar {
+      background: #f8f9fa;
+      border-bottom: 1px solid #e0e0e0;
+      padding: 11px 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .gm-dots { display: flex; gap: 5px; flex-shrink: 0; }
+    .gm-dot  { width: 10px; height: 10px; border-radius: 50%; background: #ddd; }
+    .gm-dot:nth-child(1) { background: #ff5f57; }
+    .gm-dot:nth-child(2) { background: #febc2e; }
+    .gm-dot:nth-child(3) { background: #28c840; }
+
+    .gm-url {
+      flex: 1;
+      background: #fff;
+      border: 1px solid #dadce0;
+      border-radius: 20px;
+      padding: 5px 14px;
+      font-size: .75rem;
+      color: #555;
+    }
+
+    .gm-body { padding: 18px 20px 22px; }
+
+    .gm-search {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border: 2px solid #dadce0;
+      border-radius: 24px;
+      padding: 8px 16px 8px 14px;
+      margin-bottom: 18px;
+    }
+
+    .gm-search svg { color: #9aa0a6; flex-shrink: 0; }
+    .gm-search span { font-size: .9rem; color: var(--ink); }
+
+    .gm-results { display: grid; gap: 10px; }
+
+    .gm-result {
+      padding: 12px 14px;
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 6px;
+    }
+
+    .gm-result.yours {
+      background: #f0f7eb;
+      border-color: var(--green);
+    }
+
+    .gm-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: .65rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 4px;
+    }
+
+    .gm-badge span {
+      background: var(--green);
+      color: #fff;
+      padding: 1px 6px;
+      border-radius: 2px;
+    }
+
+    .gm-url-text { font-size: .72rem; color: #1a6e38; margin-bottom: 2px; }
+    .gm-title    { font-size: .95rem; font-weight: 600; margin-bottom: 3px; }
+    .gm-result.yours .gm-title { color: var(--green); }
+    .gm-result:not(.yours) .gm-title { color: #888; }
+    .gm-desc     { font-size: .78rem; line-height: 1.5; }
+    .gm-result.yours .gm-desc { color: var(--ink-mid); }
+    .gm-result:not(.yours) .gm-desc  { color: #ccc; }
+    .gm-result:not(.yours) .gm-url-text { color: #bbb; }
+
+    .gm-footnote {
+      text-align: center;
+      padding: 10px 0 0;
+      font-size: .75rem;
+      color: var(--ink-mid);
+      font-style: italic;
+    }
+
+    /* ─── Social Media Section ───────────────────────────── */
+    .social-intro { text-align: center; max-width: 680px; margin: 0 auto 4.5rem; }
+    .social-intro h2 { font-size: clamp(2rem, 3.5vw, 2.9rem); margin-bottom: 16px; }
+    .social-intro p  { color: var(--ink-mid); font-size: 1.05rem; line-height: 1.78; }
+
+    .social-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .social-card {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 4px;
+      padding: 2rem 1.8rem;
+      transition: box-shadow .2s, transform .2s;
+    }
+
+    .social-card:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
+
+    .social-card-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: var(--green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+
+    .social-card h3 { font-size: 1.1rem; margin-bottom: 10px; color: var(--ink); }
+    .social-card p  { font-size: .9rem; color: var(--ink-mid); line-height: 1.72; margin-bottom: 10px; }
+    .social-card p:last-child { margin-bottom: 0; }
+    .social-card strong { color: var(--ink); }
+
+    .social-story {
+      background: var(--ink);
+      border-radius: 4px;
+      padding: 2.8rem 3rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .social-story h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.55rem;
+      color: var(--white);
+      margin-bottom: 14px;
+      line-height: 1.2;
+    }
+
+    .social-story p { font-size: .95rem; color: rgba(255,255,255,.6); line-height: 1.78; margin-bottom: 12px; }
+    .social-story p:last-child { margin-bottom: 0; }
+    .social-story strong { color: rgba(255,255,255,.9); }
+
+    .social-metrics { display: grid; gap: 10px; }
+
+    .social-metric {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 18px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.09);
+      border-radius: var(--radius);
+    }
+
+    .social-metric-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.55rem;
+      color: var(--tan);
+      line-height: 1;
+      flex-shrink: 0;
+      min-width: 60px;
+    }
+
+    .social-metric-lbl { font-size: .85rem; color: rgba(255,255,255,.55); line-height: 1.5; }
+
+    /* ─── Experience Cards ───────────────────────────────── */
+    .exp-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .exp-card {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.09);
+      border-radius: 3px;
+      padding: 2.2rem 2rem;
+      transition: background .2s;
+    }
+
+    .exp-card:hover { background: rgba(255,255,255,.08); }
+
+    .exp-card-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.8rem;
+      color: var(--tan);
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+
+    .exp-card h3 { font-size: 1.08rem; color: var(--white); margin-bottom: 10px; }
+    .exp-card p  { font-size: .875rem; color: rgba(255,255,255,.52); line-height: 1.68; }
+
+    /* ─── Responsive ──────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .who-grid,
+      .packages-grid,
+      .cases-grid,
+      .testi-grid,
+      .team-grid,
+      .seo-wrap,
+      .social-story,
+      .contact-wrap   { grid-template-columns: 1fr; }
+
+      .services-grid  { grid-template-columns: repeat(2, 1fr); }
+      .stats-row      { grid-template-columns: repeat(2, 1fr); }
+      .steps-grid     { grid-template-columns: repeat(2, 1fr); }
+      .steps-grid::before { display: none; }
+      .social-cards   { grid-template-columns: 1fr 1fr; }
+      .exp-grid       { grid-template-columns: 1fr 1fr; }
+
+      .contact-left,
+      .contact-right  { padding: 3rem 2.5rem; }
+
+      .who-image img  { height: 360px; }
+      .team-together  { flex-direction: column; gap: 1rem; }
+      .social-story   { padding: 2.5rem 2rem; }
+
+      /* Re-set service card borders for 2-col layout */
+      .service-card                    { border-right: 1.5px solid var(--border); border-bottom: 1.5px solid var(--border); }
+      .service-card:nth-child(2n)      { border-right: none; }
+      .service-card:nth-last-child(-n+2) { border-bottom: none; }
+    }
+
+    @media (max-width: 768px) {
+      .section { padding: 5rem 0; }
+      .hero-content { padding: 6rem 0 5rem; }
+
+      .services-grid { grid-template-columns: 1fr; }
+      /* 1-col: reset all right borders, only keep horizontal dividers */
+      .service-card                    { border-right: none; border-bottom: 1.5px solid var(--border); }
+      .service-card:nth-last-child(-n+2) { border-bottom: 1.5px solid var(--border); }
+      .service-card:last-child         { border-bottom: none; }
+
+      .social-cards   { grid-template-columns: 1fr; }
+      .exp-grid       { grid-template-columns: 1fr; }
+      .team-together  { padding: 2rem 1.8rem; }
+    }
+
+    @media (max-width: 640px) {
+      .nav-burger { display: flex; }
+
+      .nav-links {
+        display: none;
+        position: fixed;
+        top: 66px;
+        left: 0;
+        right: 0;
+        background: var(--white);
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 0.5rem 0 1rem;
+        border-bottom: 1.5px solid var(--border);
+        box-shadow: 0 6px 24px rgba(22,20,18,.1);
+        z-index: 199;
+      }
+
+      .nav-links.open { display: flex; }
+
+      .nav-links li { border-bottom: 1px solid var(--border); }
+      .nav-links li:last-child { border-bottom: none; }
+
+      .nav-links a {
+        display: block;
+        padding: 14px 2rem;
+        font-size: 1rem;
+      }
+
+      .nav-cta { margin-left: 0; padding: 1rem 2rem 0; border-bottom: none !important; }
+      .nav-cta a.btn {
+        display: block;
+        text-align: center;
+        padding: 13px 20px;
+      }
+
+      .steps-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 2.4rem; }
+      .contact-left,
+      .contact-right { padding: 2.5rem 1.8rem; }
+      .team-card-img { height: 200px; }
+    }
+
+    @media (max-width: 480px) {
+      .stats-row { grid-template-columns: 1fr 1fr; }
+      .packages-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── Nav ──────────────────────────────────────────────────── -->
+  <nav>
+    <div class="nav-inner">
+      <div class="nav-logo">Built<em>Online</em></div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#services">What We Do</a></li>
+        <li><a href="#packages">Packages</a></li>
+        <li><a href="#results">Our Experience</a></li>
+        <li class="nav-cta"><a href="#contact" class="btn btn-dark">Get in Touch</a></li>
+      </ul>
+      <button class="nav-burger" id="navBurger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ─── Ticker ───────────────────────────────────────────────── -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <span>Websites &amp; SEO</span>
+      <span>Any Business, Any Industry</span>
+      <span>Video Content Creation</span>
+      <span>On-Location Filming</span>
+      <span>Any Business That Needs to Be Found Online</span>
+      <span>Google &amp; Listing Management</span>
+      <span>UK-Wide Service</span>
+      <span>Websites &amp; SEO</span>
+      <span>Any Business, Any Industry</span>
+      <span>Video Content Creation</span>
+      <span>On-Location Filming</span>
+      <span>Any Business That Needs to Be Found Online</span>
+      <span>Google &amp; Listing Management</span>
+      <span>UK-Wide Service</span>
+    </div>
+  </div>
+
+  <!-- ─── Hero ─────────────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="tag tag-light">Online Presence for Any Business</div>
+        <h1>Your business is worth<br /><em>being found online.</em></h1>
+        <p class="hero-sub">
+          BuiltOnline helps any business that needs to be found and trusted online —
+          a professional website built for you, local SEO so customers find you on Google,
+          and 3 videos a week that put your work, your team, and your equipment in front
+          of the right people.
+        </p>
+        <div class="hero-actions">
+          <a href="#packages" class="btn btn-dark">See Packages</a>
+          <a href="#contact" class="btn btn-outline-light">Get in Touch</a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll" aria-hidden="true">
+      <div class="hero-scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- ─── Team / About ─────────────────────────────────────────── -->
+  <section class="section section-cream" id="about">
+    <div class="container">
+
+      <div class="team-intro reveal">
+        <div class="tag">Who We Are</div>
+        <h2>Two people who actually understand your world.</h2>
+        <p>
+          Between us, we've spent 17 years — half in the field doing the kind of physical work
+          you do every day, and half learning the internet inside out. That combination is rare,
+          and it's exactly why this works for businesses like yours.
+        </p>
+      </div>
+
+      <div class="team-grid">
+
+        <div class="team-card reveal">
+          <div class="team-card-img">
+            <img src="bengoodall.png" alt="Ben Goodall" />
+            <div class="team-role-badge">The Industry Side</div>
+          </div>
+          <div class="team-card-body">
+            <div class="team-name">Ben Goodall</div>
+            <div class="team-title">10 Years Hands-On in the Industry</div>
+            <p>
+              Ben hasn't just read about your trade — he's lived it.
+              <strong>Ten years of hands-on work</strong> across trades, construction,
+              and rural contracting means he knows exactly what your working day looks like,
+              what the job involves, and what customers actually care about.
+            </p>
+            <p>
+              When we turn up to film, Ben isn't a stranger on your site. He understands the
+              work, he can talk to you about it properly, and he knows how to show it in a way
+              that comes across as genuine. <strong>Not a city creative who's never done a day's work.</strong>
+            </p>
+            <div class="team-stats">
+              <div class="team-stat">
+                <strong>10 yrs</strong>
+                <span>Hands-on industry</span>
+              </div>
+              <div class="team-stat">
+                <strong>Hands-on</strong>
+                <span>Trades · Construction · Ground</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="team-card reveal reveal-d2">
+          <div class="team-card-img">
+            <img src="jakehughes.png" alt="Jake Hughes" />
+            <div class="team-role-badge">The Online Side</div>
+          </div>
+          <div class="team-card-body">
+            <div class="team-name">Jake Hughes</div>
+            <div class="team-title">7 Years in Digital — Websites, SEO &amp; Social Media</div>
+            <p>
+              Jake has spent the last <strong>7 years doing nothing but learning the internet</strong> —
+              how websites rank on Google, what makes social media content actually get watched,
+              and what turns online visitors into paying customers.
+            </p>
+            <p>
+              That's not a hobby. It's a track record. Over the years Jake has generated
+              <strong>millions of views, significant online revenue, and consistent attention</strong>
+              for businesses across different industries. He knows what works because he has
+              done it — repeatedly. He is not learning on your time.
+            </p>
+            <div class="team-stats">
+              <div class="team-stat">
+                <strong>7 yrs</strong>
+                <span>Digital marketing</span>
+              </div>
+              <div class="team-stat">
+                <strong>150M+</strong>
+                <span>Views generated</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="team-together reveal">
+        <div class="team-together-icon">"</div>
+        <div>
+          <h3>One of us knows your business inside out. The other knows the internet inside out.</h3>
+          <p>
+            Most marketing agencies have never set foot on a building site or done a day's work in the trades. Most tradesmen
+            don't know how to rank on Google or why a video gets 80,000 views.
+            We sit in the middle — and that's exactly why we can do this properly for businesses like yours,
+            where other approaches have fallen flat.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ─── Services ─────────────────────────────────────────────── -->
+  <section class="section section-white" id="services">
+    <div class="container">
+      <div class="sec-header center reveal">
+        <div class="tag">What We Do</div>
+        <h2>Found online. Trusted locally. Busy all year.</h2>
+        <p>You don't need dozens of services — just the right ones, done properly.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card reveal">
+          <div class="service-num">01</div>
+          <h3>Website Build &amp; Maintenance</h3>
+          <p>A clean, professional website that looks right on phones and computers. We build it and keep it updated so it stays relevant.</p>
+        </div>
+        <div class="service-card reveal reveal-d1">
+          <div class="service-num">02</div>
+          <h3>Local SEO — Being Found on Google</h3>
+          <p>When someone searches for what you do in your area, three or four businesses show up at the top of Google. Those businesses get the calls. We make sure yours is one of them.</p>
+        </div>
+        <div class="service-card reveal reveal-d2">
+          <div class="service-num">03</div>
+          <h3>Video Content — 3 per Week</h3>
+          <p>Short videos of your work, your team, and your equipment — posted every week without fail. Machinery in action, jobs being completed, results you're proud of. Either edited from clips you film, or we come to you and handle everything.</p>
+        </div>
+        <div class="service-card reveal">
+          <div class="service-num">04</div>
+          <h3>Social Media Management</h3>
+          <p>Consistent, professional posts across the right platforms. Not random updates — a steady presence that builds your name over time and turns viewers into enquiries. We explain exactly how this works below.</p>
+        </div>
+        <div class="service-card reveal reveal-d1">
+          <div class="service-num">05</div>
+          <h3>Business Listings Management</h3>
+          <p>Your name, number, address, and hours kept accurate across Google, directories, and maps. Simple but important.</p>
+        </div>
+        <div class="service-card reveal reveal-d2">
+          <div class="service-num">06</div>
+          <h3>Online Systems &amp; Automation</h3>
+          <p>On the premium package — tools to capture enquiries automatically, follow up with customers, and keep your operation running smoothly.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─── SEO Spotlight ─────────────────────────────────────────── -->
+  <section class="section section-cream-d" id="seo">
+    <div class="container">
+      <div class="seo-wrap">
+
+        <div class="seo-text reveal">
+          <div class="tag">Local SEO — Explained Simply</div>
+          <h2>When someone searches for what you do —<br>your business needs to come up first.</h2>
+          <p>
+            SEO stands for <strong>Search Engine Optimisation</strong> — but don't worry about
+            the name. In plain terms, it just means making sure your business shows up near the
+            top when someone types what you do into Google.
+          </p>
+          <p>
+            Think about it this way: if someone in your area types the name of your service
+            into Google, three or four businesses appear at the top. Whoever those businesses
+            are gets the phone call. If your name isn't there, that customer goes to a
+            competitor — and they never even knew you existed.
+          </p>
+          <p>That's what SEO fixes. We set your website up properly so Google shows you first.</p>
+          <div class="seo-points">
+            <div class="seo-point">
+              <div class="seo-icon">1</div>
+              <div class="seo-copy">
+                <strong>People are already searching</strong>
+                <p>Customers in your area are already searching for what you do, every single day. They just need to find you when they do.</p>
+              </div>
+            </div>
+            <div class="seo-point">
+              <div class="seo-icon">2</div>
+              <div class="seo-copy">
+                <strong>The top results get almost all the calls</strong>
+                <p>The first result on Google gets around ten times more clicks than the fifth. Position matters enormously — being on page two is almost the same as not being there at all.</p>
+              </div>
+            </div>
+            <div class="seo-point">
+              <div class="seo-icon">3</div>
+              <div class="seo-copy">
+                <strong>It keeps working month after month</strong>
+                <p>Unlike a paid advert that stops the moment you stop paying, good SEO builds over time and keeps generating enquiries without an ongoing cost per click.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal reveal-d2">
+          <div class="google-mockup">
+            <div class="gm-bar">
+              <div class="gm-dots">
+                <div class="gm-dot"></div>
+                <div class="gm-dot"></div>
+                <div class="gm-dot"></div>
+              </div>
+              <div class="gm-url">google.com/search</div>
+            </div>
+            <div class="gm-body">
+              <div class="gm-search">
+                <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><circle cx="8.5" cy="8.5" r="5.5" stroke="currentColor" stroke-width="1.8"/><path d="M13 13l3.5 3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                <span>your trade near me</span>
+              </div>
+              <div class="gm-results">
+                <div class="gm-result yours">
+                  <div class="gm-badge"><span>Your Site</span> — Top Result</div>
+                  <div class="gm-url-text">www.yourbusiness.co.uk</div>
+                  <div class="gm-title">Your Business — Professional &amp; Local</div>
+                  <div class="gm-desc">Serving the local area and surrounding counties. Competitive rates, fully experienced team. Call today for a free quote.</div>
+                </div>
+                <div class="gm-result">
+                  <div class="gm-url-text">www.someotherlocalbusiness.co.uk</div>
+                  <div class="gm-title">Some Other Local Business</div>
+                  <div class="gm-desc">Services available in the area. Contact us for more information.</div>
+                </div>
+                <div class="gm-result">
+                  <div class="gm-url-text">www.anotherlocalbusiness.co.uk</div>
+                  <div class="gm-title">Another Local Business</div>
+                  <div class="gm-desc">We cover the local area. Ring for a quote.</div>
+                </div>
+              </div>
+              <div class="gm-footnote">This is what your customers see. Where do you appear right now?</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Social Media Explained ───────────────────────────────── -->
+  <section class="section section-cream" id="social">
+    <div class="container">
+
+      <div class="social-intro reveal">
+        <div class="tag">Social Media — What It Actually Does</div>
+        <h2>It's not about going viral. It's about being remembered.</h2>
+        <p>
+          When someone in your area needs a local contractor — they call the business they already know about. Social media is how you become that
+          business, before they ever need you.
+        </p>
+      </div>
+
+      <div class="social-cards">
+        <div class="social-card reveal">
+          <div class="social-card-icon">
+            <svg width="22" height="22" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4" stroke="#fff" stroke-width="1.8"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </div>
+          <h3>Awareness — People Learn You Exist</h3>
+          <p>
+            Someone in your area scrolls past a short video of your team completing a job.
+            They've never heard of you. Now they have.
+            <strong>That costs you nothing extra</strong> once the video is posted — it keeps
+            being seen for months.
+          </p>
+          <p>
+            Most trades businesses rely entirely on word of mouth. Social media is word of mouth
+            at scale — it reaches 10,000 people instead of 10, and it does it passively while
+            you're getting on with the job.
+          </p>
+        </div>
+        <div class="social-card reveal reveal-d1">
+          <div class="social-card-icon">
+            <svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="9" stroke="#fff" stroke-width="1.8"/></svg>
+          </div>
+          <h3>Trust — People See Your Work Before They Call</h3>
+          <p>
+            When someone needs a contractor, <strong>they're already nervous about calling a
+            stranger</strong>. If they've watched six videos of your team doing excellent work,
+            that worry is gone. They call you confident and ready to book.
+          </p>
+          <p>
+            This is why video content is so powerful. It's not just advertising — it's proof.
+            People can see the quality of your work before they ever pick up the phone.
+          </p>
+        </div>
+        <div class="social-card reveal reveal-d2">
+          <div class="social-card-icon">
+            <svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M22 2L11 13" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/><path d="M22 2L15 22l-4-9-9-4 20-7z" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>Enquiries — Viewers Become Customers</h3>
+          <p>
+            Views turn into followers. Followers turn into enquiries. Not all at once — but
+            steadily, month on month. <strong>3 videos a week adds up to over 150 pieces of
+            content in your first year</strong>, each one working for you indefinitely.
+          </p>
+          <p>
+            You don't need every video to go viral. You need consistent presence, so that when
+            someone needs what you do, your name is already in their head.
+          </p>
+        </div>
+      </div>
+
+      <div class="social-story reveal">
+        <div>
+          <h3>Here's a real example of how this plays out.</h3>
+          <p>
+            It's September. A homeowner in your area scrolls past a video of your team
+            finishing a job — clean work, professional finish, done on time. They're not ready
+            to book yet. They just stop because the quality looks impressive. They follow you.
+          </p>
+          <p>
+            Two months later <strong>they're finally ready to get the work done</strong>.
+            They don't Google it. They call you — because they've watched your videos for
+            months and they already know the standard of your work.
+          </p>
+          <p>
+            Same story works for commercial jobs. A site manager or developer has watched
+            six clips of your team working efficiently with no shortcuts. When a contract
+            comes up, they call you — not a stranger from a directory.
+          </p>
+          <p>That's not luck. That's what consistent content does. We build that for you.</p>
+        </div>
+        <div class="social-metrics">
+          <div class="social-metric">
+            <div class="social-metric-num">3&times;</div>
+            <div class="social-metric-lbl">Videos posted per week, every week, without you lifting a finger</div>
+          </div>
+          <div class="social-metric">
+            <div class="social-metric-num">150+</div>
+            <div class="social-metric-lbl">Pieces of content working for you after just one year</div>
+          </div>
+          <div class="social-metric">
+            <div class="social-metric-num">Local</div>
+            <div class="social-metric-lbl">Shown to people in your area, on their phones, for free</div>
+          </div>
+          <div class="social-metric">
+            <div class="social-metric-num">24/7</div>
+            <div class="social-metric-lbl">Each video keeps being seen long after it was posted</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ─── Packages ─────────────────────────────────────────────── -->
+  <section class="section section-cream-d" id="packages">
+    <div class="container">
+      <div class="sec-header center reveal">
+        <div class="tag">Packages</div>
+        <h2>Straightforward pricing. No hidden costs.</h2>
+        <p>Three options depending on how much support you need. Every package is fully managed — we handle the website, SEO, content, and everything else end to end. You don't need to learn anything or lift a finger online.</p>
+      </div>
+
+      <div class="pkg-allincluded reveal">
+        <svg width="18" height="18" fill="none" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/></svg>
+        <span><strong>Everything is done for you.</strong> Website built from scratch. SEO set up and managed. Content created and posted. You just get on with the job.</span>
+      </div>
+
+      <div class="packages-grid">
+
+        <!-- Foundations – £1,500 -->
+        <div class="pkg reveal">
+          <div class="pkg-header">
+            <div class="pkg-name">Foundations</div>
+            <div class="pkg-price">£1,500 <span>/ month</span></div>
+            <div class="pkg-tagline">Your complete online presence, built and managed for you.</div>
+          </div>
+          <div class="pkg-body">
+            <div class="pkg-note">We handle all of this for you</div>
+            <ul class="pkg-features">
+              <li><strong>Website designed, built &amp; hosted — start to finish</strong></li>
+              <li><strong>SEO fully set up and managed</strong> — we do the work, Google finds you</li>
+              <li>Social media accounts created and managed on key platforms</li>
+              <li><strong>3 edited videos posted per week</strong> — you film on your phone, we edit and publish</li>
+              <li>Google Business Profile &amp; directory listings kept accurate</li>
+              <li>Enquiry funnel set up so visitors can easily contact you</li>
+              <li>Ongoing support — we're a phone call away</li>
+            </ul>
+            <a href="#contact" class="btn btn-outline btn-full">Find Out More</a>
+          </div>
+        </div>
+
+        <!-- On Location – £2,500 (Featured) -->
+        <div class="pkg featured reveal reveal-d1">
+          <div class="pkg-ribbon">Most Popular</div>
+          <div class="pkg-header">
+            <div class="pkg-name">On Location</div>
+            <div class="pkg-price">£2,500 <span>/ month</span></div>
+            <div class="pkg-tagline">We come to you — and handle everything from filming to publishing.</div>
+          </div>
+          <div class="pkg-body">
+            <div class="pkg-note">Everything in Foundations, plus</div>
+            <ul class="pkg-features">
+              <li class="plus"><strong>Our team travels to your site and films for you</strong></li>
+              <li class="plus"><strong>3 professional videos per week</strong> — planned, filmed, edited, posted</li>
+              <li class="plus">Full content strategy — we plan every shoot so nothing is wasted</li>
+              <li class="plus">Shows your real work, equipment, and team — nothing staged</li>
+              <li class="plus">Stronger Google rankings from consistent, high-quality content</li>
+              <li class="plus">Local audience growth month on month — you get known in your area</li>
+              <li class="plus">You don't touch any of it — we run the whole thing</li>
+            </ul>
+            <a href="#contact" class="btn btn-green btn-full">Find Out More</a>
+          </div>
+        </div>
+
+        <!-- Full System – £6,000+ -->
+        <div class="pkg reveal reveal-d2">
+          <div class="pkg-header">
+            <div class="pkg-name">Full System</div>
+            <div class="pkg-price">£6,000+ <span>/ month</span></div>
+            <div class="pkg-tagline">We become your entire digital department.</div>
+          </div>
+          <div class="pkg-body">
+            <div class="pkg-note">Everything in On Location, plus</div>
+            <ul class="pkg-features">
+              <li class="plus"><strong>Custom website built to convert visitors into enquiries</strong></li>
+              <li class="plus"><strong>Advanced SEO strategy</strong> — competitive keywords, backlinks, technical</li>
+              <li class="plus">Automated lead capture — enquiries logged and followed up for you</li>
+              <li class="plus">Sales funnel built end to end — visitor arrives, enquiry lands in your inbox</li>
+              <li class="plus">Performance dashboard — see real numbers, not guesswork</li>
+              <li class="plus">Technical development work as your business grows</li>
+              <li class="plus">Dedicated team — we act as your in-house digital department</li>
+            </ul>
+            <a href="#contact" class="btn btn-outline btn-full">Find Out More</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Experience & Results ──────────────────────────────────── -->
+  <section class="section section-ink" id="results">
+    <div class="container">
+      <div class="sec-header center reveal">
+        <div class="tag tag-light">Our Experience</div>
+        <h2 style="color:var(--white)">We haven't just read about this. We've done it.</h2>
+        <p style="color:rgba(255,255,255,.5); max-width:600px; margin:0 auto; line-height:1.78;">
+          We're not a big agency guessing at what might work for your business. We're two
+          people with 17 years of combined hands-on experience — one in the trades,
+          one in digital. Here's what that looks like in real numbers.
+        </p>
+      </div>
+
+      <div class="stats-row reveal">
+        <div class="stat">
+          <span class="stat-num">150M+</span>
+          <div class="stat-lbl">Total views generated across social media platforms over 7 years</div>
+        </div>
+        <div class="stat">
+          <span class="stat-num">7 yrs</span>
+          <div class="stat-lbl">Jake has spent building websites, growing social accounts, and ranking businesses on Google</div>
+        </div>
+        <div class="stat">
+          <span class="stat-num">10 yrs</span>
+          <div class="stat-lbl">Ben spent 10 years doing hands-on industry work before joining BuiltOnline</div>
+        </div>
+        <div class="stat">
+          <span class="stat-num">3&times;</span>
+          <div class="stat-lbl">Videos per week — the consistent output that builds brand recognition month after month</div>
+        </div>
+      </div>
+
+      <div class="exp-grid">
+        <div class="exp-card reveal">
+          <div class="exp-card-num">01</div>
+          <h3>What Jake Brings to the Online Side</h3>
+          <p>
+            Over 7 years, Jake has built and ranked websites from scratch, grown social
+            media accounts to hundreds of thousands of views, and generated real attention and
+            revenue for businesses through digital channels. The strategies we use aren't
+            theories from a textbook — they're tested, repeated methods with a real track
+            record behind them. He isn't learning on your time.
+          </p>
+        </div>
+        <div class="exp-card reveal reveal-d1">
+          <div class="exp-card-num">02</div>
+          <h3>What Ben Brings to the Industry Side</h3>
+          <p>
+            Ben's 10 years across trades, construction, and rural work means he
+            understands your customers, your language, and your working environment.
+            He knows how to present trade businesses in a way that comes across as genuine —
+            because it is. He's been on the tools himself. When we film with you, it shows.
+          </p>
+        </div>
+        <div class="exp-card reveal reveal-d2">
+          <div class="exp-card-num">03</div>
+          <h3>Why This Matters for Your Business</h3>
+          <p>
+            Businesses have been badly served by marketing agencies that don't
+            understand them, and by people who know the industry but don't know the internet.
+            We solve both problems at the same time — which is why this approach works where
+            others haven't. You're not funding someone's learning curve. We already know what
+            we're doing.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─── How It Works ─────────────────────────────────────────── -->
+  <section class="section section-white">
+    <div class="container">
+      <div class="sec-header center reveal">
+        <div class="tag">How It Works</div>
+        <h2>Simple from the start.</h2>
+        <p>Getting set up with BuiltOnline is straightforward. There's no long sales process.</p>
+      </div>
+      <div class="steps-grid">
+        <div class="step reveal">
+          <div class="step-n">1</div>
+          <h3>Have a Chat</h3>
+          <p>We get on a call or come to see you. You tell us about your business and what you're hoping to achieve.</p>
+        </div>
+        <div class="step reveal reveal-d1">
+          <div class="step-n">2</div>
+          <h3>We Put a Plan Together</h3>
+          <p>We outline exactly what we'll do, what it costs, and what you can expect. Nothing vague.</p>
+        </div>
+        <div class="step reveal reveal-d2">
+          <div class="step-n">3</div>
+          <h3>We Get to Work</h3>
+          <p>Website, social media, content — all set up and running. You're kept informed without being bombarded.</p>
+        </div>
+        <div class="step reveal reveal-d3">
+          <div class="step-n">4</div>
+          <h3>You Start Getting Found</h3>
+          <p>Month by month your online presence grows. More people find you. The work speaks for itself.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FAQ ──────────────────────────────────────────────────── -->
+  <section class="section section-cream-d">
+    <div class="container">
+      <div class="sec-header center reveal">
+        <div class="tag">Questions</div>
+        <h2>Things people usually ask us.</h2>
+      </div>
+      <div class="faq-wrap reveal">
+
+        <div class="faq-item">
+          <button class="faq-q">
+            I'm not very technical. Will I be able to keep up with what's going on?
+            <svg class="faq-arrow" viewBox="0 0 20 20" fill="none"><path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="faq-body"><div class="faq-body-inner">Yes — that's exactly who we work with. You don't need to understand websites or social media for this to work. We explain what we're doing in plain language, and you'll always know what's been done and why. If you have a question at any point, just ask. We're not one of those agencies that sends you a jargon-filled monthly report that doesn't mean anything.</div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">
+            Does social media and Google actually bring in real paying customers?
+            <svg class="faq-arrow" viewBox="0 0 20 20" fill="none"><path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="faq-body"><div class="faq-body-inner">Yes — but through consistency, not overnight miracles. When someone searches for what you do, they call whoever is at the top of Google. SEO puts you there. Social media builds trust over time — people see your work regularly and think of you when they need it, rather than a stranger they found in a directory. The businesses that do best stick with it and let it build month on month.</div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">
+            What kind of businesses do you work with?
+            <svg class="faq-arrow" viewBox="0 0 20 20" fill="none"><path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="faq-body"><div class="faq-body-inner">We work with any business that needs a stronger online presence. Ben's hands-on background in trades and rural work means we understand practical businesses especially well, but our system works across industries — from local services and retail to professional businesses and beyond. If customers are struggling to find you online, we can help.</div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">
+            How long before I start seeing results?
+            <svg class="faq-arrow" viewBox="0 0 20 20" fill="none"><path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="faq-body"><div class="faq-body-inner">Some things happen quickly — your website going live, your social accounts looking professional, your Google listing being accurate. SEO and audience growth take a little longer; typically 2–4 months before you notice a real difference in enquiries. We set realistic expectations from the start.</div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">
+            Is there a contract? Can I stop if I need to?
+            <svg class="faq-arrow" viewBox="0 0 20 20" fill="none"><path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="faq-body"><div class="faq-body-inner">We work on rolling monthly agreements with a short notice period. We'd rather earn your business every month by doing a good job than tie you into something you're not happy with. Terms will always be clear before anything starts.</div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">
+            What's the difference between the £1,500 and £2,500 packages in practice?
+            <svg class="faq-arrow" viewBox="0 0 20 20" fill="none"><path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="faq-body"><div class="faq-body-inner">The main difference is who does the filming. On Foundations, you record clips on your phone and send them to us to edit. On On Location, our team travels to you, films professionally, and handles everything. The quality is noticeably higher, and you don't have to think about it at all.</div></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Contact ───────────────────────────────────────────────── -->
+  <section class="section section-ink" id="contact">
+    <div class="container">
+      <div class="contact-wrap reveal">
+
+        <div class="contact-left">
+          <div>
+            <div class="tag tag-light">Get in Touch</div>
+            <h2>No pressure.<br />Just a conversation.</h2>
+            <p style="margin-top:16px">
+              Fill in the form and we'll get back to you within one working day.
+              If you'd rather just call or email directly, that works too.
+            </p>
+          </div>
+          <div class="contact-details">
+            <div class="contact-detail">
+              <strong>Email</strong>
+              jakehughes.workmail@gmail.com
+            </div>
+            <div class="contact-detail">
+              <strong>Phone</strong>
+              07944 255845
+            </div>
+            <div class="contact-detail" style="font-size:.82rem; margin-top:4px; opacity:.55;">
+              We work with businesses across the UK.<br />
+              Site visits available on On Location and Full System packages.
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-right">
+          <form class="c-form" action="https://formsubmit.co/jakehughes.workmail@gmail.com" method="POST">
+            <input type="hidden" name="_subject" value="New enquiry — BuiltOnline" />
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_template" value="table" />
+            <div class="form-row">
+              <div class="field">
+                <label>Your Name</label>
+                <input type="text" name="name" placeholder="John Smith" required />
+              </div>
+              <div class="field">
+                <label>Phone Number</label>
+                <input type="tel" name="phone" placeholder="07XXX XXX XXX" />
+              </div>
+            </div>
+            <div class="field">
+              <label>Email Address</label>
+              <input type="email" name="email" placeholder="hello@yourbusiness.co.uk" required />
+            </div>
+            <div class="field">
+              <label>Type of Business</label>
+              <select name="business_type">
+                <option value="" disabled selected>Select your business type</option>
+                <option>Builder or General Contractor</option>
+                <option>Groundwork, Civils or Drainage</option>
+                <option>Fencing or Landscaping</option>
+                <option>Roofing or Plastering</option>
+                <option>Electrical or Plumbing</option>
+                <option>Tree Surgery or Arborist</option>
+                <option>Plant or Equipment Hire</option>
+                <option>Farm or Agricultural Business</option>
+                <option>Garage or Vehicle Services</option>
+                <option>Other Business Type</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Package of Interest (optional)</label>
+              <select name="package_interest">
+                <option value="" disabled selected>Not sure yet</option>
+                <option>Foundations — £1,500/month</option>
+                <option>On Location — £2,500/month</option>
+                <option>Full System — £6,000+/month</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Anything else to add?</label>
+              <textarea name="message" placeholder="Brief description of your business or any questions..."></textarea>
+            </div>
+            <button type="submit" class="btn-submit">Send Enquiry</button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Footer ───────────────────────────────────────────────── -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-logo">Built<em>Online</em></div>
+        <ul class="footer-nav">
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#packages">Packages</a></li>
+          <li><a href="#results">Experience</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="footer-copy">© 2026 BuiltOnline. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ─── Scripts ──────────────────────────────────────────────── -->
+  <script>
+    /* ── Scroll reveal ── */
+    const revealObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          revealObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.07 });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+    /* ── FAQ accordion ── */
+    document.querySelectorAll('.faq-q').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+      });
+    });
+
+    /* ── Mobile nav ── */
+    const navBurger = document.getElementById('navBurger');
+    const navLinks  = document.getElementById('navLinks');
+    if (navBurger && navLinks) {
+      navBurger.addEventListener('click', () => {
+        const isOpen = navLinks.classList.toggle('open');
+        navBurger.classList.toggle('open', isOpen);
+        navBurger.setAttribute('aria-expanded', String(isOpen));
+        navBurger.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+      });
+      navLinks.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => {
+          navLinks.classList.remove('open');
+          navBurger.classList.remove('open');
+          navBurger.setAttribute('aria-expanded', 'false');
+          navBurger.setAttribute('aria-label', 'Open menu');
+        });
+      });
+    }
+
+    /* ── Smooth scroll ── */
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
